@@ -65,6 +65,16 @@ func runGC(c *Cache, ci time.Duration) {
 	go gc.Run(c)
 }
 
+func (c *Cache) ClearCache() {
+	c.mutex.Lock()
+
+	for key := range c.items {
+		delete(c.items, key)
+	}
+
+	c.mutex.Unlock()
+}
+
 func (c *Cache) DeleteExpired() {
 	now := time.Now().UnixNano()
 
