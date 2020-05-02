@@ -104,3 +104,24 @@ func TestCache_Add(t *testing.T) {
 		t.Error("it should have returned an error")
 	}
 }
+
+func TestCache_ClearCache(t *testing.T) {
+	testCache := NewCache(3*time.Second, 0)
+
+	added, _ := testCache.Add("foo", "bar2", testCache.DefaultLife)
+	if !added {
+		t.Error("It should have been added")
+	}
+
+	added, _ = testCache.Add("foo2", "bar2", testCache.DefaultLife)
+	if !added {
+		t.Error("It should have been added")
+	}
+
+	testCache.ClearCache()
+
+	_, found := testCache.Get("c")
+	if found {
+		t.Error("it should have been deleted")
+	}
+}
