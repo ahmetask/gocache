@@ -6,6 +6,10 @@ Gocache is a Golang library for caching.
 
 You need [golang 1.14](https://golang.org/dl/) to use gocache.
 
+
+```go
+ go get github.com/ahmetask/gocache/v2
+```
 ## Example 
 [Server](https://github.com/ahmetask/gocache-server-example)
 
