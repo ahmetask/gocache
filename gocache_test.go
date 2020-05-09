@@ -120,7 +120,28 @@ func TestCache_ClearCache(t *testing.T) {
 
 	testCache.ClearCache()
 
-	_, found := testCache.Get("c")
+	_, found := testCache.Get("foo")
+	if found {
+		t.Error("it should have been deleted")
+	}
+}
+
+func TestCache_DeleteCachedItem(t *testing.T) {
+	testCache := NewCache(3*time.Second, 0)
+
+	added, _ := testCache.Add("foo", "bar2", testCache.DefaultLife)
+	if !added {
+		t.Error("It should have been added")
+	}
+
+	added, _ = testCache.Add("foo2", "bar2", testCache.DefaultLife)
+	if !added {
+		t.Error("It should have been added")
+	}
+
+	testCache.DeleteCachedItem("foo")
+
+	_, found := testCache.Get("foo")
 	if found {
 		t.Error("it should have been deleted")
 	}

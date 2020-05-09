@@ -65,6 +65,12 @@ func runGC(c *Cache, ci time.Duration) {
 	go gc.Run(c)
 }
 
+func (c *Cache) DeleteCachedItem(key string) {
+	c.mutex.Lock()
+	delete(c.items, key)
+	c.mutex.Unlock()
+}
+
 func (c *Cache) ClearCache() {
 	c.mutex.Lock()
 

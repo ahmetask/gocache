@@ -41,6 +41,11 @@ func (s *Server) SaveCache(ctx context.Context, request *SaveCacheRequest) (*Emp
 	return &Empty{}, nil
 }
 
+func (s *Server) DeleteCachedItem(ctx context.Context, request *DeleteCacheItemRequest) (*Empty, error) {
+	cache.DeleteCachedItem(request.Key)
+	return &Empty{}, nil
+}
+
 func (s *Server) ClearCache(ctx context.Context, request *Empty) (*Empty, error) {
 	cache.ClearCache()
 	return &Empty{}, nil

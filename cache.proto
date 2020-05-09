@@ -18,6 +18,10 @@ message SaveCacheRequest {
   bytes value = 3;
 }
 
+message DeleteCacheItemRequest {
+  string key = 1;
+}
+
 message Empty {
 
 }
@@ -25,5 +29,6 @@ message Empty {
 service cacheService {
   rpc GetCache (GetCacheRequest) returns (GetCacheResponse) {};
   rpc SaveCache (SaveCacheRequest) returns (Empty) {};
+  rpc DeleteCachedItem (DeleteCacheItemRequest) returns (Empty) {};
   rpc ClearCache (Empty) returns (Empty) {};
 }

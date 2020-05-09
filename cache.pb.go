@@ -194,6 +194,53 @@ func (x *SaveCacheRequest) GetValue() []byte {
 	return nil
 }
 
+type DeleteCacheItemRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Key string `protobuf:"bytes,1,opt,name=key,proto3" json:"key,omitempty"`
+}
+
+func (x *DeleteCacheItemRequest) Reset() {
+	*x = DeleteCacheItemRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_cache_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteCacheItemRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteCacheItemRequest) ProtoMessage() {}
+
+func (x *DeleteCacheItemRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_cache_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteCacheItemRequest.ProtoReflect.Descriptor instead.
+func (*DeleteCacheItemRequest) Descriptor() ([]byte, []int) {
+	return file_cache_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *DeleteCacheItemRequest) GetKey() string {
+	if x != nil {
+		return x.Key
+	}
+	return ""
+}
+
 type Empty struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -203,7 +250,7 @@ type Empty struct {
 func (x *Empty) Reset() {
 	*x = Empty{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_cache_proto_msgTypes[3]
+		mi := &file_cache_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -216,7 +263,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_cache_proto_msgTypes[3]
+	mi := &file_cache_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -229,7 +276,7 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_cache_proto_rawDescGZIP(), []int{3}
+	return file_cache_proto_rawDescGZIP(), []int{4}
 }
 
 var File_cache_proto protoreflect.FileDescriptor
@@ -247,20 +294,27 @@ var file_cache_proto_rawDesc = []byte{
 	0x74, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
 	0x6b, 0x65, 0x79, 0x12, 0x12, 0x0a, 0x04, 0x6c, 0x69, 0x66, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28,
 	0x03, 0x52, 0x04, 0x6c, 0x69, 0x66, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x07, 0x0a,
-	0x05, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x32, 0xaf, 0x01, 0x0a, 0x0c, 0x63, 0x61, 0x63, 0x68, 0x65,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x3d, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x43, 0x61,
-	0x63, 0x68, 0x65, 0x12, 0x16, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x43,
-	0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x63, 0x61,
-	0x63, 0x68, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x22, 0x00, 0x12, 0x34, 0x0a, 0x09, 0x53, 0x61, 0x76, 0x65, 0x43, 0x61,
-	0x63, 0x68, 0x65, 0x12, 0x17, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x53, 0x61, 0x76, 0x65,
-	0x43, 0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x63,
-	0x61, 0x63, 0x68, 0x65, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x2a, 0x0a, 0x0a,
-	0x43, 0x6c, 0x65, 0x61, 0x72, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12, 0x0c, 0x2e, 0x63, 0x61, 0x63,
-	0x68, 0x65, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0c, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65,
-	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x42, 0x09, 0x5a, 0x07, 0x67, 0x6f, 0x63, 0x61,
-	0x63, 0x68, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x0c, 0x52, 0x05, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x22, 0x2a, 0x0a,
+	0x16, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x63, 0x68, 0x65, 0x49, 0x74, 0x65, 0x6d,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x6b, 0x65, 0x79, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x6b, 0x65, 0x79, 0x22, 0x07, 0x0a, 0x05, 0x45, 0x6d, 0x70,
+	0x74, 0x79, 0x32, 0xf2, 0x01, 0x0a, 0x0c, 0x63, 0x61, 0x63, 0x68, 0x65, 0x53, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x12, 0x3d, 0x0a, 0x08, 0x47, 0x65, 0x74, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12,
+	0x16, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x61, 0x63, 0x68, 0x65,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e,
+	0x47, 0x65, 0x74, 0x43, 0x61, 0x63, 0x68, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x22, 0x00, 0x12, 0x34, 0x0a, 0x09, 0x53, 0x61, 0x76, 0x65, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12,
+	0x17, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e, 0x53, 0x61, 0x76, 0x65, 0x43, 0x61, 0x63, 0x68,
+	0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65,
+	0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x41, 0x0a, 0x10, 0x44, 0x65, 0x6c, 0x65,
+	0x74, 0x65, 0x43, 0x61, 0x63, 0x68, 0x65, 0x64, 0x49, 0x74, 0x65, 0x6d, 0x12, 0x1d, 0x2e, 0x63,
+	0x61, 0x63, 0x68, 0x65, 0x2e, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x43, 0x61, 0x63, 0x68, 0x65,
+	0x49, 0x74, 0x65, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x0c, 0x2e, 0x63, 0x61,
+	0x63, 0x68, 0x65, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x12, 0x2a, 0x0a, 0x0a, 0x43,
+	0x6c, 0x65, 0x61, 0x72, 0x43, 0x61, 0x63, 0x68, 0x65, 0x12, 0x0c, 0x2e, 0x63, 0x61, 0x63, 0x68,
+	0x65, 0x2e, 0x45, 0x6d, 0x70, 0x74, 0x79, 0x1a, 0x0c, 0x2e, 0x63, 0x61, 0x63, 0x68, 0x65, 0x2e,
+	0x45, 0x6d, 0x70, 0x74, 0x79, 0x22, 0x00, 0x42, 0x09, 0x5a, 0x07, 0x67, 0x6f, 0x63, 0x61, 0x63,
+	0x68, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -275,22 +329,25 @@ func file_cache_proto_rawDescGZIP() []byte {
 	return file_cache_proto_rawDescData
 }
 
-var file_cache_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_cache_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_cache_proto_goTypes = []interface{}{
-	(*GetCacheRequest)(nil),  // 0: cache.GetCacheRequest
-	(*GetCacheResponse)(nil), // 1: cache.GetCacheResponse
-	(*SaveCacheRequest)(nil), // 2: cache.SaveCacheRequest
-	(*Empty)(nil),            // 3: cache.Empty
+	(*GetCacheRequest)(nil),        // 0: cache.GetCacheRequest
+	(*GetCacheResponse)(nil),       // 1: cache.GetCacheResponse
+	(*SaveCacheRequest)(nil),       // 2: cache.SaveCacheRequest
+	(*DeleteCacheItemRequest)(nil), // 3: cache.DeleteCacheItemRequest
+	(*Empty)(nil),                  // 4: cache.Empty
 }
 var file_cache_proto_depIdxs = []int32{
 	0, // 0: cache.cacheService.GetCache:input_type -> cache.GetCacheRequest
 	2, // 1: cache.cacheService.SaveCache:input_type -> cache.SaveCacheRequest
-	3, // 2: cache.cacheService.ClearCache:input_type -> cache.Empty
-	1, // 3: cache.cacheService.GetCache:output_type -> cache.GetCacheResponse
-	3, // 4: cache.cacheService.SaveCache:output_type -> cache.Empty
-	3, // 5: cache.cacheService.ClearCache:output_type -> cache.Empty
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	3, // 2: cache.cacheService.DeleteCachedItem:input_type -> cache.DeleteCacheItemRequest
+	4, // 3: cache.cacheService.ClearCache:input_type -> cache.Empty
+	1, // 4: cache.cacheService.GetCache:output_type -> cache.GetCacheResponse
+	4, // 5: cache.cacheService.SaveCache:output_type -> cache.Empty
+	4, // 6: cache.cacheService.DeleteCachedItem:output_type -> cache.Empty
+	4, // 7: cache.cacheService.ClearCache:output_type -> cache.Empty
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -339,6 +396,18 @@ func file_cache_proto_init() {
 			}
 		}
 		file_cache_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteCacheItemRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_cache_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Empty); i {
 			case 0:
 				return &v.state
@@ -357,7 +426,7 @@ func file_cache_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_cache_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
@@ -385,6 +454,7 @@ const _ = grpc.SupportPackageIsVersion6
 type CacheServiceClient interface {
 	GetCache(ctx context.Context, in *GetCacheRequest, opts ...grpc.CallOption) (*GetCacheResponse, error)
 	SaveCache(ctx context.Context, in *SaveCacheRequest, opts ...grpc.CallOption) (*Empty, error)
+	DeleteCachedItem(ctx context.Context, in *DeleteCacheItemRequest, opts ...grpc.CallOption) (*Empty, error)
 	ClearCache(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
 }
 
@@ -414,6 +484,15 @@ func (c *cacheServiceClient) SaveCache(ctx context.Context, in *SaveCacheRequest
 	return out, nil
 }
 
+func (c *cacheServiceClient) DeleteCachedItem(ctx context.Context, in *DeleteCacheItemRequest, opts ...grpc.CallOption) (*Empty, error) {
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, "/cache.cacheService/DeleteCachedItem", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *cacheServiceClient) ClearCache(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error) {
 	out := new(Empty)
 	err := c.cc.Invoke(ctx, "/cache.cacheService/ClearCache", in, out, opts...)
@@ -427,6 +506,7 @@ func (c *cacheServiceClient) ClearCache(ctx context.Context, in *Empty, opts ...
 type CacheServiceServer interface {
 	GetCache(context.Context, *GetCacheRequest) (*GetCacheResponse, error)
 	SaveCache(context.Context, *SaveCacheRequest) (*Empty, error)
+	DeleteCachedItem(context.Context, *DeleteCacheItemRequest) (*Empty, error)
 	ClearCache(context.Context, *Empty) (*Empty, error)
 }
 
@@ -439,6 +519,9 @@ func (*UnimplementedCacheServiceServer) GetCache(context.Context, *GetCacheReque
 }
 func (*UnimplementedCacheServiceServer) SaveCache(context.Context, *SaveCacheRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SaveCache not implemented")
+}
+func (*UnimplementedCacheServiceServer) DeleteCachedItem(context.Context, *DeleteCacheItemRequest) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCachedItem not implemented")
 }
 func (*UnimplementedCacheServiceServer) ClearCache(context.Context, *Empty) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ClearCache not implemented")
@@ -484,6 +567,24 @@ func _CacheService_SaveCache_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CacheService_DeleteCachedItem_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteCacheItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CacheServiceServer).DeleteCachedItem(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/cache.cacheService/DeleteCachedItem",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CacheServiceServer).DeleteCachedItem(ctx, req.(*DeleteCacheItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _CacheService_ClearCache_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Empty)
 	if err := dec(in); err != nil {
@@ -513,6 +614,10 @@ var _CacheService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SaveCache",
 			Handler:    _CacheService_SaveCache_Handler,
+		},
+		{
+			MethodName: "DeleteCachedItem",
+			Handler:    _CacheService_DeleteCachedItem_Handler,
 		},
 		{
 			MethodName: "ClearCache",
