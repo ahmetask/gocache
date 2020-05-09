@@ -78,3 +78,21 @@ func ClearCache(address string) error {
 
 	return nil
 }
+
+func DeleteCacheItem(address string, key string) error {
+	cc, err := grpc.Dial(address, grpc.WithInsecure())
+	if err != nil {
+		return err
+	}
+	defer cc.Close()
+
+	client := NewCacheServiceClient(cc)
+	request := &DeleteCacheItemRequest{Key: key}
+
+	_, clientError := client.DeleteCachedItem(context.Background(), request)
+	if clientError != nil {
+		return clientError
+	}
+
+	return nil
+}
