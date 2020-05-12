@@ -4,7 +4,7 @@ Gocache is a Golang library for caching.
 
 ## Installation
 
-You need [golang 1.14](https://golang.org/dl/) to use gocache.
+You need [golang 1.13](https://golang.org/dl/) to use gocache.
 
 
 ```go
