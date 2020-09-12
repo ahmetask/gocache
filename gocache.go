@@ -67,6 +67,14 @@ func runGC(c *Cache, ci time.Duration) {
 	go gc.Run(c)
 }
 
+func (c *Cache) DeleteBackground(key string) {
+	if c.pool == nil {
+		log.Println("Pool is empty")
+		return
+	}
+	c.pool.Submit(&deleteJob{job: job{cache: c, key: key}})
+}
+
 func (c *Cache) DeleteCachedItem(key string) {
 	c.mutex.Lock()
 	delete(c.items, key)
@@ -190,7 +198,7 @@ func (c *Cache) AddBackground(key string, content interface{}, life time.Duratio
 		log.Println("Pool is empty")
 		return
 	}
-	c.pool.Submit(&addingJob{cache: c, key: key, content: content, life: life})
+	c.pool.Submit(&addingJob{job: job{cache: c, key: key, content: content, life: life}})
 }
 
 func (c *Cache) StartWorkerPoolWith(workerCount int) {
