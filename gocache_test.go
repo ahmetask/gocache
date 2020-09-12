@@ -146,3 +146,16 @@ func TestCache_DeleteCachedItem(t *testing.T) {
 		t.Error("it should have been deleted")
 	}
 }
+
+func TestCache_AddBackground(t *testing.T) {
+	testCache := NewCache(3*time.Second, 0)
+	testCache.StartWorkerPoolWith(2)
+
+	testCache.AddBackground("key", "value", Eternal)
+	//wait for the background tasks
+	time.Sleep(10 * time.Millisecond)
+	_, found := testCache.Get("key")
+	if !found {
+		t.Error("It should have been added")
+	}
+}
