@@ -8,24 +8,25 @@ type work interface {
 	do()
 }
 
-type addingJob struct {
+type job struct {
 	cache   *Cache
 	key     string
 	content interface{}
 	life    time.Duration
 }
 
+type addingJob struct {
+	job
+}
+
+type deleteJob struct {
+	job
+}
+
 func (w *addingJob) do() {
-	w.cache.mutex.Lock()
+	w.cache.Add(w.key, w.content, w.life)
+}
 
-	_, found := w.cache.get(w.key)
-
-	if found {
-		w.cache.mutex.Unlock()
-		return
-	}
-
-	w.cache.set(w.key, w.content, w.life)
-
-	w.cache.mutex.Unlock()
+func (w *deleteJob) do() {
+	w.cache.DeleteCachedItem(w.key)
 }
