@@ -2,6 +2,7 @@ package gocache
 
 import (
 	"fmt"
+	"log"
 	"runtime"
 	"sync"
 	"time"
@@ -29,6 +30,7 @@ type garbageCollector struct {
 // Cache properties
 type Cache struct {
 	DefaultLife      time.Duration
+	pool             *workerPool
 	mutex            sync.RWMutex
 	items            map[string]Item
 	garbageCollector *garbageCollector
@@ -171,6 +173,36 @@ func (c *Cache) Add(key string, content interface{}, life time.Duration) (bool, 
 	c.mutex.Unlock()
 
 	return true, "OK"
+}
+
+func (c *Cache) Print() {
+	c.mutex.Lock()
+	defer c.mutex.Unlock()
+
+	fmt.Printf("Length: %d\n", len(c.items))
+	for k, value := range c.items {
+		fmt.Printf("key: %s value: %v\n", k, value)
+	}
+}
+
+func (c *Cache) AddBackground(key string, content interface{}, life time.Duration) {
+	if c.pool == nil {
+		log.Println("Pool is empty")
+		return
+	}
+	c.pool.Submit(&addingJob{cache: c, key: key, content: content, life: life})
+}
+
+func (c *Cache) StartWorkerPoolWith(workerCount int) {
+	if c.pool != nil {
+		return
+	}
+	c.pool = newWorkerPool(workerCount)
+	c.pool.Start()
+}
+
+func (c *Cache) StopWorkerPool() {
+	c.pool.Stop()
 }
 
 func NewCache(defaultLife, gbcInterval time.Duration) *Cache {
