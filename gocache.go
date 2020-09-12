@@ -2,6 +2,7 @@ package gocache
 
 import (
 	"fmt"
+	"log"
 	"runtime"
 	"sync"
 	"time"
@@ -186,6 +187,7 @@ func (c *Cache) Print() {
 
 func (c *Cache) AddBackground(key string, content interface{}, life time.Duration) {
 	if c.pool == nil {
+		log.Println("Pool is empty")
 		return
 	}
 	c.pool.Submit(&addingJob{cache: c, key: key, content: content, life: life})

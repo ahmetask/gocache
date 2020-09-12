@@ -80,6 +80,22 @@ func main() {
 
 
 ```
+## Worker Pool Usage
+```go
+package main
 
+import (
+	"github.com/ahmetask/gocache/v2"
+	"time"
+)
+
+func main()  {
+	cache := gocache.NewCache(5*time.Minute, 5*time.Second)
+	cache.StartWorkerPoolWith(2)
+	
+	cache.AddBackground("key", "value",  gocache.Eternal)
+}
+
+```
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
